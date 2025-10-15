@@ -274,13 +274,15 @@ def convert_excel(input_file, output_format):
     except Exception as e:
         print(f"✗ Error: {e}")
         return False
-    
+
 def detect_file_type(filename):
     ext = Path(filename).suffix.lower()
     
     image_formats = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp', '.ico'}
     video_formats = {'.mp4', '.avi', '.mkv', '.mov', '.wmv', '.flv', '.webm', '.m4v'}
     audio_formats = {'.mp3', '.wav', '.ogg', '.flac', '.m4a', '.aac', '.wma'}
+    document_formats = {'.pdf', '.docx', '.doc', '.txt'}
+    excel_formats = {'.xls', '.xlsx'}
     
     if ext in image_formats:
         return 'image'
@@ -288,6 +290,10 @@ def detect_file_type(filename):
         return 'video'
     elif ext in audio_formats:
         return 'audio'
+    elif ext in document_formats:
+        return 'document'
+    elif ext in excel_formats:
+        return 'excel'
     else:
         return None
 
